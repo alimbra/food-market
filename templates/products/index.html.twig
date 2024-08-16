@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <div class="d-flex justify-content-center">
+        <h1>Liste des produits</h1>
+    </div>
+    <div>
+    {{ form_start(form,  {'attr': {'class' : 'row'}}) }}
+        <div class="mb-3 col-md-4">
+            {{form_row(form.code) }}
+        </div>
+        <div class="mb-3 col-md-4">
+            {{form_row(form.name) }}
+        </div>
+        <div class="col-md-4">
+
+            {{form_row(form.search) }}
+        </div>
+    {{ form_end(form) }}
+    </div>
+    <div class="row">
+    {% for product in products %}
+    <div class="card" style="width: 18rem;margin: 0.5em;">
+        <div class="card-body">
+            <h5 class="card-title"><b>{{ product.code }} - {{ product.supplier.name }}</b></h5>
+            <p class="card-text">{{ product.name }}</p>
+            <p class="card-text">{{ product.price }} <b>Euro</b></p>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="offset-4 col-2">
+            {% if page > 1 %}
+                <a href="{{ path('app_products', {page: page-1}) }}" class="btn btn-primary">Précédant</a>
+            {% endif %}
+        </div>
+        <div class="col-2">
+
+        {% if page < max %}
+            <a href="{{ path('app_products', {page: page+1}) }}" class="btn btn-primary">Suivant</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+framework:
+    workflows:
+        import_file:
+            type: state_machine
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Domain\Entity\ImportFile
+            initial_marking: saved
+            places:
+                - saved
+                - done
+                - error
+
+            transitions:
+                success_import:
+                    from: saved
+                    to: done
+                failure_import:
+                    from: saved
+                    to: error

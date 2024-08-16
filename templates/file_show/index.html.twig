@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FileShowController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    <div class="row mt-1">
+        {{ form_start(form,  {'attr': {'class' : 'row'}}) }}
+        <div class="row">
+            {{ form_row(form.validate) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div>
+        {% for line in results %}
+        <div>
+            {{ line }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ManualImportController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    <div>
+        <h1>Liste des imports</h1>
+    </div>
+    <div class="row">
+        <div class="list-group">
+        {% for import in imports %}
+                <a class="list-group-item list-group-item-action list-group-item-primary" href="{{ path('app_file_show', {id: import.id}) }}"> {{ import.filename }}</a>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+<di
+{% endblock %}
